@@ -77,29 +77,6 @@ pre {
     margin-top: 0;
 }
 
-/* ============================================================================
-   Buttons
-   ============================================================================ */
-
-button {
-    display: block;
-    width: 100%;
-    padding: 8px 12px;
-    margin-bottom: 8px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    font-size: 13px;
-    cursor: pointer;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-/* Primary action button (Export) */
-.primary {
-    background-color: #0060df;
-    color: white;
-}
-
 .primary:hover {
     background-color: #003eaa;
 }
