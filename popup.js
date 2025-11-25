@@ -1,9 +1,31 @@
 /**
- * Settings Exporter - Firefox Addon
- * Vibecoded with Antigravity by Jan-Michael Kühn 2025 Dec
+ * Settings Exporter - Firefox Extension
+ * 
+ * A Firefox extension that allows users to export and import browser settings
+ * to better manage multiple Firefox profiles.
+ * 
+ * @author Jan-Michael Kühn
+ * @version 1.0.0
+ * @license MIT
  */
 
-function showStatus(text, duration = 2000) {
+// ============================================================================
+// Constants
+// ============================================================================
+
+const STATUS_DISPLAY_DURATION = 2000; // milliseconds
+const BLOB_CLEANUP_DELAY = 1000; // milliseconds
+
+// ============================================================================
+// UI Helper Functions
+// ============================================================================
+
+/**
+ * Displays a status message to the user
+ * @param {string} text - The message to display
+ * @param {number} [duration=2000] - How long to show the message (ms), 0 for permanent
+ */
+function showStatus(text, duration = STATUS_DISPLAY_DURATION) {
     const statusEl = document.getElementById('status');
     statusEl.textContent = text;
     if (duration) {
@@ -13,16 +35,32 @@ function showStatus(text, duration = 2000) {
     }
 }
 
+/**
+ * Refreshes the current settings view by loading from storage
+ * Displays all captured settings in JSON format
+ */
 async function refreshView() {
     try {
         const data = await browser.storage.local.get(null);
         document.getElementById('current-settings').textContent = JSON.stringify(data, null, 2);
     } catch (e) {
-        console.error(e);
+        console.error('Error refreshing view:', e);
         document.getElementById('current-settings').textContent = "Error loading storage: " + e.message;
     }
 }
 
+// ============================================================================
+// Browser Settings Capture
+// ============================================================================
+
+/**
+ * Captures current browser settings including:
+ * - Browser settings (homepage, cache, popups, etc.)
+ * - Privacy settings (tracking, WebRTC, cookies, etc.)
+ * - Proxy configuration
+ * 
+ * Stores all captured settings in browser.storage.local
+ */
 async function captureBrowserSettings() {
     try {
         const settings = {};
@@ -97,32 +135,49 @@ async function captureBrowserSettings() {
             }
         }
 
+        // Save to storage
         await browser.storage.local.set(settings);
         showStatus('Browser settings captured');
         refreshView();
     } catch (e) {
-        console.error(e);
+        console.error('Error capturing settings:', e);
         showStatus('Capture failed: ' + e.message);
     }
 }
 
+// ============================================================================
+// Storage Management
+// ============================================================================
+
+/**
+ * Clears all captured settings from local storage
+ * WARNING: This action cannot be undone
+ */
 async function clearStorage() {
     await browser.storage.local.clear();
     showStatus('Storage cleared');
     refreshView();
 }
 
+/**
+ * Saves user preferences (filename prefix) to sync storage
+ * Sync storage is synchronized across Firefox instances
+ */
 async function saveSettings() {
     try {
         const filenamePrefix = document.getElementById('filename-prefix').value.trim();
         await browser.storage.sync.set({ filenamePrefix });
         showStatus('Settings saved');
     } catch (e) {
-        console.error(e);
+        console.error('Error saving settings:', e);
         showStatus('Failed to save settings: ' + e.message);
     }
 }
 
+/**
+ * Loads user preferences from sync storage
+ * Populates the filename prefix input field if a value exists
+ */
 async function loadSettings() {
     try {
         const { filenamePrefix } = await browser.storage.sync.get('filenamePrefix');
@@ -130,10 +185,23 @@ async function loadSettings() {
             document.getElementById('filename-prefix').value = filenamePrefix;
         }
     } catch (e) {
-        console.error(e);
+        console.error('Error loading settings:', e);
     }
 }
 
+// ============================================================================
+// Export/Import Functions
+// ============================================================================
+
+/**
+ * Exports all captured settings to a JSON file
+ * 
+ * Filename format: {prefix}-{YYYY-MM-DD}.json
+ * - Uses custom prefix if set, otherwise "firefox-{browser}"
+ * - Includes current date for version tracking
+ * 
+ * Uses browser.downloads API to trigger download dialog
+ */
 async function exportSettings() {
     try {
         const data = await browser.storage.local.get(null);
@@ -172,15 +240,29 @@ async function exportSettings() {
         // Clean up the blob URL after a short delay
         setTimeout(() => {
             URL.revokeObjectURL(url);
-        }, 1000);
+        }, BLOB_CLEANUP_DELAY);
 
         showStatus('Export started');
     } catch (e) {
-        console.error(e);
+        console.error('Error exporting settings:', e);
         showStatus('Export failed: ' + e.message);
     }
 }
 
+/**
+ * Imports settings from a JSON file
+ * 
+ * @param {Event} event - File input change event
+ * 
+ * Process:
+ * 1. Reads selected JSON file
+ * 2. Parses JSON content
+ * 3. Clears existing storage
+ * 4. Imports new settings
+ * 
+ * TODO: Add validation to ensure JSON structure is correct
+ * TODO: Add confirmation dialog before clearing existing settings
+ */
 function importSettings(event) {
     const file = event.target.files[0];
     if (!file) return;
@@ -194,7 +276,7 @@ function importSettings(event) {
             showStatus('Settings imported successfully');
             refreshView();
         } catch (err) {
-            console.error(err);
+            console.error('Error importing settings:', err);
             showStatus('Import failed: Invalid JSON');
         }
         // Reset input so same file can be selected again if needed
@@ -203,10 +285,21 @@ function importSettings(event) {
     reader.readAsText(file);
 }
 
+// ============================================================================
+// Initialization
+// ============================================================================
+
+/**
+ * Initializes the extension popup
+ * - Loads current settings view
+ * - Loads user preferences
+ * - Attaches event listeners to all interactive elements
+ */
 document.addEventListener('DOMContentLoaded', () => {
     refreshView();
     loadSettings();
 
+    // Attach event listeners
     document.getElementById('refresh-btn').addEventListener('click', refreshView);
     document.getElementById('capture-btn').addEventListener('click', captureBrowserSettings);
     document.getElementById('clear-btn').addEventListener('click', clearStorage);

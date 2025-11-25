@@ -63,6 +63,117 @@ Built with:
 - Manifest V2
 - WebExtension APIs
 - Vanilla JavaScript (no frameworks)
+- Firefox Photon Design System
+
+### Project Structure
+
+```
+firefox-export-settings-extension/
+├── manifest.json       # Extension configuration
+├── popup.html          # UI structure
+├── popup.js            # Main logic
+├── style.css           # Styles with dark mode support
+├── icons/              # Extension icons (48, 96, 128px)
+├── LICENSE             # MIT License
+├── README.md           # This file
+└── CHANGELOG.md        # Version history
+```
+
+### Development Setup
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yesnoidontknow1/firefox-export-settings-extension.git
+   cd firefox-export-settings-extension
+   ```
+
+2. Load in Firefox:
+
+   - Navigate to `about:debugging`
+   - Click "This Firefox"
+   - Click "Load Temporary Add-on"
+   - Select `manifest.json`
+
+3. Make changes and reload:
+   - Edit files
+   - Click "Reload" in `about:debugging`
+
+### Code Documentation
+
+All code is thoroughly documented with:
+
+- **JSDoc comments** in JavaScript files
+- **HTML comments** for section organization
+- **CSS comments** for style grouping
+- **Inline comments** for complex logic
+
+### Testing
+
+Manual testing checklist:
+
+- [ ] Capture browser settings
+- [ ] Export to JSON file
+- [ ] Import from JSON file
+- [ ] Custom filename prefix
+- [ ] Dark mode appearance
+- [ ] Clear storage functionality
+
+## Troubleshooting
+
+### Export not working
+
+- Ensure you have the `downloads` permission
+- Check browser console for errors
+- Try reloading the extension
+
+### Settings not saving
+
+- Verify addon ID is set in manifest
+- Check that `storage` permission is granted
+- Ensure you're not in private browsing mode
+
+### Import fails
+
+- Verify JSON file is valid
+- Check file was exported from this extension
+- Ensure file is not corrupted
+
+### Dark mode not working
+
+- Check system dark mode is enabled
+- Reload the extension popup
+- Verify browser supports `prefers-color-scheme`
+
+## Contributing
+
+Contributions are welcome! Please follow these guidelines:
+
+1. **Fork the repository**
+2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
+3. **Commit your changes**: `git commit -m 'Add amazing feature'`
+4. **Push to the branch**: `git push origin feature/amazing-feature`
+5. **Open a Pull Request**
+
+### Code Style
+
+- Use JSDoc comments for functions
+- Follow existing code formatting
+- Add comments for complex logic
+- Test thoroughly before submitting
+
+### Security
+
+Before submitting, review the [Security Audit](docs/security-audit.md) for known issues and best practices.
+
+## Roadmap
+
+- [ ] Input validation for imports
+- [ ] Filename sanitization
+- [ ] Confirmation dialogs
+- [ ] Export integrity checking
+- [ ] Sensitive data redaction
+- [ ] Manifest V3 migration
 
 ## License
 
@@ -74,4 +185,4 @@ Vibecoded with Antigravity by Jan-Michael Kühn 2025 Dec
 
 ## Support
 
-For issues or feature requests, please visit the GitHub repository.
+For issues or feature requests, please visit the [GitHub repository](https://github.com/yesnoidontknow1/firefox-export-settings-extension).

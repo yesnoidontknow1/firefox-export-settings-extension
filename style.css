@@ -1,3 +1,14 @@
+/**
+ * Settings Exporter - Styles
+ * 
+ * Follows Firefox Photon Design System
+ * Supports automatic light/dark mode switching
+ */
+
+/* ============================================================================
+   Base Styles
+   ============================================================================ */
+
 body {
     width: 320px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -12,6 +23,10 @@ body {
     flex-direction: column;
 }
 
+/* ============================================================================
+   Header
+   ============================================================================ */
+
 .header {
     background-color: #ffffff;
     padding: 16px;
@@ -23,6 +38,10 @@ body {
     font-size: 16px;
     font-weight: 600;
 }
+
+/* ============================================================================
+   Content Area
+   ============================================================================ */
 
 .content {
     padding: 16px;
@@ -44,6 +63,10 @@ body {
     margin-bottom: 10px;
 }
 
+/* ============================================================================
+   Settings Display (JSON Preview)
+   ============================================================================ */
+
 pre {
     background: #f0f0f4;
     padding: 8px;
@@ -53,6 +76,10 @@ pre {
     max-height: 100px;
     margin-top: 0;
 }
+
+/* ============================================================================
+   Buttons
+   ============================================================================ */
 
 button {
     display: block;
@@ -67,6 +94,7 @@ button {
     box-sizing: border-box;
 }
 
+/* Primary action button (Export) */
 .primary {
     background-color: #0060df;
     color: white;
@@ -76,6 +104,7 @@ button {
     background-color: #003eaa;
 }
 
+/* Secondary action buttons (Refresh, Capture, Save) */
 .secondary {
     background-color: #e0e0e6;
     color: #0c0c0d;
@@ -86,6 +115,7 @@ button {
     background-color: #d7d7db;
 }
 
+/* Danger button (Clear Storage) */
 .danger {
     background-color: #d70022;
     color: white;
@@ -94,6 +124,10 @@ button {
 .danger:hover {
     background-color: #a4000f;
 }
+
+/* ============================================================================
+   File Import
+   ============================================================================ */
 
 .import-group {
     margin-top: 8px;
@@ -114,12 +148,20 @@ label.button {
     box-sizing: border-box;
 }
 
+/* ============================================================================
+   Status Messages
+   ============================================================================ */
+
 .status {
     font-size: 12px;
     text-align: center;
     min-height: 1.5em;
     color: #0060df;
 }
+
+/* ============================================================================
+   Footer
+   ============================================================================ */
 
 .footer {
     font-size: 10px;
@@ -129,6 +171,10 @@ label.button {
     border-top: 1px solid #ededf0;
     margin-top: 8px;
 }
+
+/* ============================================================================
+   Input Groups (Settings Form)
+   ============================================================================ */
 
 .input-group {
     margin-bottom: 12px;
@@ -165,7 +211,11 @@ label.button {
     margin-top: 4px;
 }
 
-/* Dark Mode Support */
+/* ============================================================================
+   Dark Mode Support
+   Automatically adapts to system preference
+   ============================================================================ */
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #2b2a33;

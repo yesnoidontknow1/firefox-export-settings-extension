@@ -8,11 +8,18 @@
 
 <body>
     <div class="panel">
+        <!-- ============================================ -->
+        <!-- Header Section                               -->
+        <!-- ============================================ -->
         <div class="header">
             <h1>Settings Manager</h1>
         </div>
 
         <div class="content">
+            <!-- ============================================ -->
+            <!-- Current Storage Display                      -->
+            <!-- Shows captured settings in JSON format       -->
+            <!-- ============================================ -->
             <div class="section">
                 <h2>Current Storage</h2>
                 <pre id="current-settings">Loading...</pre>
@@ -21,6 +28,10 @@
                 <button id="clear-btn" class="danger">Clear Storage</button>
             </div>
 
+            <!-- ============================================ -->
+            <!-- User Settings                                -->
+            <!-- Custom filename prefix configuration         -->
+            <!-- ============================================ -->
             <div class="section">
                 <h2>Settings</h2>
                 <div class="input-group">
@@ -31,6 +42,10 @@
                 <button id="save-settings-btn" class="secondary">Save Settings</button>
             </div>
 
+            <!-- ============================================ -->
+            <!-- Export/Import Actions                        -->
+            <!-- Main functionality buttons                   -->
+            <!-- ============================================ -->
             <div class="section">
                 <h2>Actions</h2>
                 <button id="export-btn" class="primary">Export Settings</button>
@@ -41,13 +56,22 @@
                 </div>
             </div>
 
+            <!-- ============================================ -->
+            <!-- Status Messages                              -->
+            <!-- Displays feedback to user                    -->
+            <!-- ============================================ -->
             <div id="status" class="status"></div>
 
+            <!-- ============================================ -->
+            <!-- Footer                                       -->
+            <!-- ============================================ -->
             <div class="footer">
                 Vibecoded with Antigravity by Jan-Michael Kühn 2025 Dec
             </div>
         </div>
     </div>
+    
+    <!-- Main JavaScript -->
     <script src="popup.js"></script>
 </body>
 
