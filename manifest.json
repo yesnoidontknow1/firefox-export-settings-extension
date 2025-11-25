@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Settings Exporter",
+  "name": "Firefox Settings Importer & Exporter",
   "version": "1.0.0",
   "description": "Export and import your Firefox browser settings with ease to better deal with multiple profiles.",
   "browser_specific_settings": {
@@ -22,7 +22,7 @@
   ],
   "browser_action": {
     "default_icon": "icons/icon-48.svg",
-    "default_title": "Settings Exporter",
+    "default_title": "Firefox Settings Importer & Exporter",
     "default_popup": "popup.html"
   }
 }

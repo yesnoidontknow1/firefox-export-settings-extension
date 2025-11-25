@@ -1,5 +1,5 @@
 /**
- * Settings Exporter - Firefox Extension
+ * Firefox Settings Importer & Exporter
  * 
  * A Firefox extension that allows users to export and import browser settings
  * to better manage multiple Firefox profiles.

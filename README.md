@@ -1,4 +1,4 @@
-# Settings Exporter - Firefox Extension
+# Firefox Settings Importer & Exporter
 
 Export and import your Firefox browser settings with ease to better deal with multiple profiles.
 
