@@ -1,0 +1,20 @@
+# Version archives
+versions/
+
+# AMO submission packages
+*.zip
+
+# Old version folder
+settings-exporter/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.log

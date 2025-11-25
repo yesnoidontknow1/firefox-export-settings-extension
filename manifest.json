@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "name": "Settings Exporter",
+  "version": "1.0.0",
+  "description": "Export and import your Firefox browser settings with ease to better deal with multiple profiles.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "settings-exporter@jmk.vibecoding"
+    }
+  },
+  "icons": {
+    "48": "icons/icon-48.svg",
+    "96": "icons/icon-96.svg",
+    "128": "icons/icon-128.svg"
+  },
+  "permissions": [
+    "storage",
+    "downloads",
+    "browserSettings",
+    "privacy",
+    "proxy"
+  ],
+  "browser_action": {
+    "default_icon": "icons/icon-48.svg",
+    "default_title": "Settings Exporter",
+    "default_popup": "popup.html"
+  }
+}

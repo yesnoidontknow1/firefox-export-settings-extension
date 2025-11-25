@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="panel">
+        <div class="header">
+            <h1>Settings Manager</h1>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>Current Storage</h2>
+                <pre id="current-settings">Loading...</pre>
+                <button id="refresh-btn" class="secondary">Refresh View</button>
+                <button id="capture-btn" class="secondary">Capture Browser Settings</button>
+                <button id="clear-btn" class="danger">Clear Storage</button>
+            </div>
+
+            <div class="section">
+                <h2>Settings</h2>
+                <div class="input-group">
+                    <label for="filename-prefix">Export Filename Prefix:</label>
+                    <input type="text" id="filename-prefix" placeholder="e.g., my-firefox-profile">
+                    <small>Leave empty to use default (firefox-{browser})</small>
+                </div>
+                <button id="save-settings-btn" class="secondary">Save Settings</button>
+            </div>
+
+            <div class="section">
+                <h2>Actions</h2>
+                <button id="export-btn" class="primary">Export Settings</button>
+
+                <div class="import-group">
+                    <label for="import-file" class="button secondary">Select File to Import</label>
+                    <input type="file" id="import-file" accept=".json">
+                </div>
+            </div>
+
+            <div id="status" class="status"></div>
+
+            <div class="footer">
+                Vibecoded with Antigravity by Jan-Michael Kühn 2025 Dec
+            </div>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+
+</html>
