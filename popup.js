@@ -306,4 +306,33 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('save-settings-btn').addEventListener('click', saveSettings);
     document.getElementById('export-btn').addEventListener('click', exportSettings);
     document.getElementById('import-file').addEventListener('change', importSettings);
+
+    // Add ripple effect to all buttons
+    const buttons = document.querySelectorAll('button, label.button');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', createRipple);
+    });
 });
+
+/**
+ * Creates a ripple effect on button click
+ * @param {MouseEvent} event - The click event
+ */
+function createRipple(event) {
+    const button = event.currentTarget;
+    const circle = document.createElement('span');
+    const diameter = Math.max(button.clientWidth, button.clientHeight);
+    const radius = diameter / 2;
+
+    circle.style.width = circle.style.height = `${diameter}px`;
+    circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
+    circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
+    circle.classList.add('ripple');
+
+    const ripple = button.getElementsByClassName('ripple')[0];
+    if (ripple) {
+        ripple.remove();
+    }
+
+    button.appendChild(circle);
+}
